@@ -14,6 +14,6 @@ mov rax, 0x3b    ; 0x3b is the syscall number for execve in Linux x86_64
 syscall          ; execute the syscall
 ```
 
-- We add 19 to rdi to adjust the pointer, which has been moved by the shellcode itself. 19 is the offset between the start of the shellcode and the string "/bin/sh".
-- We trigger a system call using the syscall number in rax and the arguments in the appropriate registers. Since the registers are initially zeroed by the binary, both rsi and rdx (second and third arguments of execve) are already NULL.
+- We add 19 to `rdi` to adjust the pointer, which has been moved by the shellcode itself. 19 is the offset between the start of the shellcode and the string "/bin/sh".
+- We trigger a system call using the syscall number in `rax` and the arguments in the appropriate registers. Since the registers are initially zeroed by the binary, both `rsi` and `rdx` (second and third arguments of execve) are already NULL.
 
