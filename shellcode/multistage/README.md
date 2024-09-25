@@ -12,7 +12,7 @@ In the first stage we call the syscall read in order to read the second stage fr
     xor rdi, rdi  ; clear rdi register (fd = 0)
     push rax      ; push value of rax into stack
     pop rsi       ; pop rax into rsi (in this way we are writing on top of the first stage)
-    xor rax, rax  ; clear rax register (number for read syscall)
+    xor rax, rax  ; clear rax register (syscall number for read)
     push 100      ; push 100 on the stack (number of bytes to read)
     pop rdx       ; pop it into rdx 
     syscall
