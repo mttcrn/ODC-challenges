@@ -1,4 +1,4 @@
-# gimme_3bytes
+# gimme3bytes
 The goal is to "pop a shell with only 3 bytes" in order to read the flag.
 
 ## Context
