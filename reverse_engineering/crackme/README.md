@@ -19,4 +19,4 @@ if ( argc > 1 )
 A signal handler is set up for (usually SIGTRAP in Unix-like systems), and whenever this signal is raised, the `catch_function` will be called.
 When the catch_function is called, it performs an XOR-based validation on the input. The goal is to reverse this validation process and find the correct input (flag).
 
-In [this file](../exploit.c/) I reversed the function, thus obtaining the right flag.
+In [this file](/reverse.c/) I reversed the function, thus obtaining the right flag.
