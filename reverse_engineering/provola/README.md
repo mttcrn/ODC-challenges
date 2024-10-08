@@ -21,5 +21,5 @@ if ( strlen(a1) != 37 ) //a1 is the input
   return 1;
 ```
 - The function immediately return if the length is not 37, so we have to put exactly 37 chars to see what will happen. 
-- By trial and error (and knowing that the flag is in the form `flag{}`) we derived that if the a character of the psw is wrong the program will return. So we can bruteforce the flag char by char.
+- By trial and error (and knowing the flag format is flag{}), we determined that the program returns immediately if a character is incorrect. This allows us to brute-force the flag one character at a time.
 - The idea is to put a breakpoint at `++i` and run the program to run the program and check every printable character until the correct one is found (the program stops if the character is wrong).
