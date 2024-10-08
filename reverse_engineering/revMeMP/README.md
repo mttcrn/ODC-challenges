@@ -17,6 +17,7 @@ else
   puts("Wrong!");
 return 0;
 ```
+
 Here it is sub_120F():
 ```{c}
 result = ptrace(PTRACE_TRACEME, 0, 1, 0);
@@ -27,6 +28,7 @@ if ( result == -1 )
 }
 ```
 - I hijacked the `ptrace()` syscall by making it return 0 instead of -1 so that the program could successfuly execute under the debug.
+
 Here it is sub_1199():
 ```{c}
 for ( i = &start; ; i = (_DWORD *)((char *)i + 1) )
