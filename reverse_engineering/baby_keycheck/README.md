@@ -31,7 +31,7 @@ for ( i = 0; (unsigned int)i <= 12; ++i )
   if ( ((unsigned __int8)kkk[i % 6] ^ v8[i]) != magic0[i] )
     return 0;
 }
-//[... omitted not relevant code]
+// [... more code]
 ```
 The first 13 characters (after "flag{") are XORed with values from `kkk`, then compared to `magic0`.
 
@@ -44,7 +44,7 @@ for ( j = 0; j <= 11; ++j )
   if ( v4 != magic1[j] )
     return 0;
 }
-//[... omitted not relevant code]
+// [... more code]
 puts("Your input looks like the correct flag \\(^o^)/");
 ```
 The next 12 characters undergo an accumulation check with `magic1`.
