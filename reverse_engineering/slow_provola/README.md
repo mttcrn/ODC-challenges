@@ -11,7 +11,7 @@ By disassembling the binary I see that the input is fowarded to function check_p
 v70 = 1;
 if ( strlen(a1) != 68 ) //a1 is the input
    return 0;
-//[some code omitted for clarity]
+//[... more code]
 for ( i = 0; i <= 31; ++i )
 {
   if ( v140[i] != provola[i] )
