@@ -34,7 +34,6 @@ while (1)
 
 ## Approach
 - I put the shellcode into the name (basic /bin/sh shell).
-- The payload overflows up to the canary's location with (0x68 + 1) bytes (to reach the canary).
-- After sending the payload, the script reads the leaked canary value from the stack, which is 8 bytes long. It constructs the canary by adding a null byte (\x00) at the beginning (it usually start with a null byte).
+- The payload overflows up to the canary's location with (0x68 + 1) bytes (to reach the canary). After sending the payload, the script reads the leaked canary value from the stack, which is 8 bytes long. It constructs the canary by adding a null byte (\x00) at the beginning (it usually start with a null byte).
 - Another payload is sent to leak the base address of the binary. The payload length is (0x68 + 6 * 8), which overflows up to the return address. After sending this payload, the script captures the next 6 bytes, which corresponds to the address of the return pointer. The leak is then adjusted by subtracting the offset of the main function to get the base address of the binary.
 - Now crafts the final payload to overwrite the return address with the address of the shellcode.
