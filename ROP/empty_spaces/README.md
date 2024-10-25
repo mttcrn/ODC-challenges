@@ -21,4 +21,4 @@ for ( i = 0; i <= 17; i += 4 )
 ```
 This function effectively breaks the ROP chain by overwriting sections of the buffer with a specific value.
 
-My solution exploits the fact that in `rdi` it is already present the address of buffer. By using an initial `sys_read`, I could overwrite the buffer contents with a new ROP chain that isn’t affected by the empty function's modifications.
+My solution exploits the fact that in `rdi` it is already present the address of buffer. By using an initial `sys_read`, I could overwrite the buffer contents with a new ROP chain that isn’t affected by the empty function's modifications. Since the buffer is reused, the first ROP chain would return to the same point in memory. To address this, I added a NOP sled, allowing the execution to continue smoothly after the buffer was rewritten.
