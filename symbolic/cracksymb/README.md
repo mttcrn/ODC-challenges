@@ -1,5 +1,4 @@
 # cracksymb
-The goal is to find the flag.
 
 ## Context
 - The binary takes the flag as input and check wheter it is correct or not.
