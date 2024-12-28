@@ -1,4 +1,5 @@
 # baby_kernel
+The goal is to escalate privileges to root in order to read the flag, which is stored in a file accessible only to the root user.
 
 ## Context
 The function `baby_kernel_ioctl` is in charge of the input/output control. It will be called with an ioctl syscall is performed on the fd of the related kernel module. 
