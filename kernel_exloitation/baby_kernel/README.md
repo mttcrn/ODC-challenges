@@ -13,4 +13,4 @@ return 0;
 The point of the challenge is to put a shellcode in userspace and call it with this function.
 
 ## Approach
-Everything can be found in [the exploit](./exploit.c).
+Everything is explained in [the exploit](./exploit.c).
