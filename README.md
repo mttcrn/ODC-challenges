@@ -1,4 +1,4 @@
-# Offensive and Defensive Cybersecurity challenges - A.Y. 2023-2024
+# Offensive and Defensive Cybersecurity challenges - A.Y. 2024-2025
 
 This repository contains my solutions for **CTF challenges** proposed during the course "Offensive and Defensive Cybersecurity" offered at Politecnico di Milano. 
 
