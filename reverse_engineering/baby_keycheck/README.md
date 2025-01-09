@@ -49,4 +49,4 @@ puts("Your input looks like the correct flag \\(^o^)/");
 ```
 The next 12 characters undergo an accumulation check with `magic1`.
 - By inspecting the bynary's memory in IDA I extracted the values of `magic0`, `kkk` and `magic1`.
-In [this file](/reverse.py/) I reversed the two functions, thus obtaining the right flag.
+In [this file](./reverse.py/) I reversed the two functions, thus obtaining the right flag.
