@@ -1,4 +1,5 @@
 # ROPasaurusrex
+The goal is to pop a shell in order to read the flag.
 
 ## Context
 In the `get_input()` function there is a clear buffer overflow:
